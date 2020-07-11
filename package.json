@@ -1,0 +1,15 @@
+{
+  "name": "dingdongcloud-sms",
+  "version": "1.0.0",
+  "dependencies": {
+
+  },
+  "type": "module",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "homepage": "https://github.com/alex-michaud/dingdongcloud-sms",
+  "bugs": {
+    "url": "https://github.com/alex-michaud/dingdongcloud-sms/issues"
+  }
+}
