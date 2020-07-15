@@ -74,7 +74,7 @@ class DingDongCloud {
       })
 
       req.on('error', (err) => {
-        console.error(err.message)
+        // console.error(err.message)
         reject(err);
       })
 

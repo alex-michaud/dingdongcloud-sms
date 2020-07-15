@@ -6,7 +6,9 @@
   "keywords": [
     "China",
     "sms",
-    "dingdongcloud"
+    "dingdongcloud",
+    "短信",
+    "叮咚云"
   ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
