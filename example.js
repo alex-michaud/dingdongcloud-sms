@@ -9,7 +9,9 @@ console.log({ dingDongCloudConfig });
 
 const ddc = new DingDongCloud(dingDongCloudConfig);
 
-ddc.setSignature('RedDoor');
+ddc.setSignature('_SIGNATURE_');
 ddc.sendNotification({ mobile: '1111111111', content: 'test message' })
   .then((response) => { console.log(response); })
-  .catch((err) => { console.error(err.message); });
+  .catch((err) => {
+    console.error(err.message, err.code, err.message_en);
+  });
