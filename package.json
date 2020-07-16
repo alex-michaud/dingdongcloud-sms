@@ -1,6 +1,6 @@
 {
   "name": "dingdongcloud-sms",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "dependencies": {},
   "keywords": [
     "China",
@@ -13,11 +13,10 @@
     "registry": "https://registry.npmjs.org/"
   },
   "homepage": "https://github.com/alex-michaud/dingdongcloud-sms",
-  "author":{
-    "name" : "Alex Michaud",
-    "email" : "alex.michaud+dingdongcloud@gmail.com",
-    "url" : "https://github.com/alex-michaud"
-
+  "author": {
+    "name": "Alex Michaud",
+    "email": "alex.michaud+dingdongcloud@gmail.com",
+    "url": "https://github.com/alex-michaud"
   },
   "bugs": {
     "url": "https://github.com/alex-michaud/dingdongcloud-sms/issues"
