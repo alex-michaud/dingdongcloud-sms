@@ -67,8 +67,14 @@ class DingDongCloud {
       this.url_send_sms_yx = `/${this.apiversion}/sms/sendyx`;
     }
     else {
-      this.url_send_notification = `/${this.apiversion}/sms/notice/send.json`;
+      // 获取user信息url (get user info)
       this.url_get_user = `/${this.apiversion}/user/get.json`;
+
+      // 发送通知url (send notification)
+      this.url_send_notification = `/${this.apiversion}/sms/notice/send.json`;
+
+      // 发送营销url (Marketing)
+      this.url_send_sms_yx = `/${this.apiversion}/sms/marketing/send.json`;
     }
 
     this.sms_host = 'api.dingdongcloud.com';
@@ -83,8 +89,7 @@ class DingDongCloud {
    */
   _post = ({ path, post_data }) => {
     return new Promise((resolve, reject) => {
-      const data = JSON.stringify(post_data)
-      // console.log({ data })
+      const data = JSON.stringify(post_data);
 
       const options = {
         hostname: this.sms_host,
@@ -92,13 +97,11 @@ class DingDongCloud {
         path: path,
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': data.length
+          'Content-Type': 'application/json'
         }
       }
 
       const req = https.request(options, (res) => {
-        // console.log(`statusCode: ${res.statusCode}`)
         let chunks = '';
 
         res.on('data', (chunk) => {
@@ -116,19 +119,18 @@ class DingDongCloud {
             resolve(response);
           }
           else {
+            // console.error(res);
             reject(new DingDongCloudError(response));
           }
         });
       })
 
       req.on('error', (err) => {
-        // console.error(err.message)
         reject(err);
       })
 
-      // console.log({ data })
-      req.write(data)
-      req.end();
+      req.write(data, 'utf8')
+      req.end()
     })
   };
 
@@ -157,7 +159,7 @@ class DingDongCloud {
 
   /**
    *
-   * @param signature
+   * @param {String} signature
    */
   setSignature = (signature) => {
     this.signature = signature;
@@ -165,12 +167,13 @@ class DingDongCloud {
 
   /**
    *
-   * @param mobile
-   * @param content
-   * @param signature
+   * @param {String|Array} mobile
+   * @param {String} content
+   * @param {String} signature
    * @returns {*}
    */
   sendNotification = ({ mobile, content, signature }) => {
+    if (Array.isArray(mobile)) { mobile = mobile.join(',') }
     return this._send_request({ path: this.url_send_notification, mobile, content, signature });
   };
 

@@ -13,7 +13,7 @@ ddc.getAccountInfo()
   .then((response) => { console.log({ response })})
   .catch((err) => { console.error(err.message); })
 
-ddc.setSignature('_SIGNATURE_');
+ddc.setSignature(env.signature);
 ddc.sendNotification({ mobile: env.mobile_test_number, content: 'test message' })
   .then((response) => { console.log(response); })
   .catch((err) => {

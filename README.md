@@ -8,6 +8,10 @@
 [DingDongCloud.com wiki](https://www.dingdongcloud.com/wiki/v1/attention/)
 
 
+*If you find a problem or would like me to add more features, open an issue on github or send me a message on wechat: ouais_chine*  
+*如果您发现问题或希望我添加更多功能，请在github上打开问题或在微信上向我发送消息：ouais_chine*
+
+
 Note: SMS content must be UTF-8 encoded  
 注意：SMS内容必须为UTF-8编码
 
@@ -38,7 +42,7 @@ ddc.sendNotification({ mobile: '1234567890', content: 'test message' })
   .then((response) => { console.log(response); })
   .catch((err) => { console.error(err.message); });
 ```
-
+*See the file "example.js"*
 
 ## Successful response example - 成功回应范例
 
