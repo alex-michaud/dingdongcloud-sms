@@ -25,7 +25,7 @@ yarn add dingdongcloud-sms
 ## Usage - 运用
 
 ```ecmascript 6
-import { DingDongCloud } from './index.js';
+const { DingDongCloud } = require('dingdongcloud-sms');
 
 const dingDongCloudConfig = {
   api_key: '_your_own_api_key_'
@@ -50,6 +50,19 @@ ddc.sendNotification({ mobile: '1234567890', content: 'test message' })
 }
 ```
 
+```JSON
+{
+  "code": 1,             		
+  "msg": "成功",          		
+  "result": {
+    "account": "18868831940",  
+    "warn_sms_count": 10000,        
+    "white_ips": "",          
+    "balance": 9874 
+  }
+}
+```
+
 ## Error response example - 错误响应示例
 
 If the request in unsuccessful, we throw a custom "DingDongCloud" error.  
@@ -64,3 +77,13 @@ If the request in unsuccessful, we throw a custom "DingDongCloud" error.
   "name": "DingDongCloudError"
 }
 ```
+
+## Methods
+
+|         Method        |      Return                 |
+|----------------------:|:----------------------------|
+| getAccountInfo()      | Promise                     |
+| setSignature(**String**)  |  Does not return |
+| sendNotification({ mobile: **String**, content: **String** }) | Promise |
+|               |           |
+

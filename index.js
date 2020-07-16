@@ -1,4 +1,5 @@
-import https from 'https';
+// import https from 'https';
+const https = require('https');
 
 const errorDefinitions = {
   "-1":	"User account name and password do not match",
@@ -67,6 +68,7 @@ class DingDongCloud {
     }
     else {
       this.url_send_notification = `/${this.apiversion}/sms/notice/send.json`;
+      this.url_get_user = `/${this.apiversion}/user/get.json`;
     }
 
     this.sms_host = 'api.dingdongcloud.com';
@@ -82,6 +84,7 @@ class DingDongCloud {
   _post = ({ path, post_data }) => {
     return new Promise((resolve, reject) => {
       const data = JSON.stringify(post_data)
+      // console.log({ data })
 
       const options = {
         hostname: this.sms_host,
@@ -138,16 +141,16 @@ class DingDongCloud {
    * @returns {*}
    * @private
    */
-  _send_sms = ({ path, mobile, content, signature }) => {
+  _send_request = ({ path, mobile, content, signature }) => {
+    const post_data = {};
+    post_data.apikey = this.apikey;
 
     const sign = signature || this.signature;
 
-    // 这是需要提交的数据
-    const post_data = {
-      'apikey': this.apikey,
-      'mobile':mobile,
-      'content': `【${sign}】${content}`
-    };
+    if (mobile && content) {
+      post_data.content = `【${sign}】${content}`;
+      post_data.mobile = mobile;
+    }
 
     return this._post({ path, post_data });
   };
@@ -168,7 +171,15 @@ class DingDongCloud {
    * @returns {*}
    */
   sendNotification = ({ mobile, content, signature }) => {
-    return this._send_sms({ path: this.url_send_notification, mobile, content, signature });
+    return this._send_request({ path: this.url_send_notification, mobile, content, signature });
+  };
+
+  /**
+   *
+   * @returns {*}
+   */
+  getAccountInfo = () => {
+    return this._send_request({ path: this.url_get_user });
   };
 }
 
@@ -182,4 +193,6 @@ class DingDongCloudError extends Error {
   }
 }
 
-export { DingDongCloud };
+// export { DingDongCloud };
+
+module.exports = { DingDongCloud };
